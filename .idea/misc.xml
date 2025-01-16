@@ -6,6 +6,8 @@
       <list>
         <option value="$PROJECT_DIR$/peliculasAPI/peliculasAPI/pom.xml" />
         <option value="$PROJECT_DIR$/peliculasAPI/pom.xml" />
+        <option value="$PROJECT_DIR$/peliculasAPI_Front/pom.xml" />
+        <option value="$PROJECT_DIR$/skeleton-starter-flow-spring-23/pom.xml" />
       </list>
     </option>
   </component>

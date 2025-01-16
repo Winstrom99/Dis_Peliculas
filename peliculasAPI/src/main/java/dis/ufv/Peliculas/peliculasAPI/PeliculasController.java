@@ -1,0 +1,43 @@
+package dis.ufv.Peliculas.peliculasAPI;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+
+@RestController
+public class PeliculasController {
+    @GetMapping("/peliculas")
+    public ArrayList<Pelicula> Peliculas(){
+        return new LectorCsv().leerCsv();
+
+    }
+
+    @GetMapping("/peliculas/porNombre/{nombre}")
+    public ResponseEntity<Pelicula> getPorNombre(@PathVariable String nombre){
+        ArrayList<Pelicula> listaPeliculas = new LectorCsv().leerCsv();
+        Pelicula encontrado = null;
+        for (Pelicula pelicula : listaPeliculas) {
+            if (pelicula.getNombre().equalsIgnoreCase(nombre)) {
+                encontrado = pelicula;
+            }
+        }
+        return new ResponseEntity<>(encontrado, HttpStatus.OK);
+    }
+    @GetMapping("/peliculas/porGenero/{Genero}")
+    public ArrayList<Pelicula>  getPortipo(@PathVariable String genero){
+        ArrayList<Pelicula> listaPeliculas = new LectorCsv().leerCsv();
+        ArrayList<Pelicula> listaEncontrados = new ArrayList<>();
+        for (Pelicula pelicula : listaPeliculas
+        ) {
+            if (pelicula.getGenero().equalsIgnoreCase(genero)) {
+                listaEncontrados.add(pelicula);
+            }
+        }
+        return listaEncontrados;
+    }
+
+}
